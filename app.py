@@ -185,7 +185,7 @@ def load_transaction_data():
     """Load raw transaction data and calculate all needed features"""
     
     # Load raw data (upload OnlineRetail.csv to GitHub)
-    df = pd.read_csv('OnlineRetail.csv', encoding='latin1')
+    df = pd.read_csv('OnlineRetail_Cleaned.csv', encoding='latin1')
     
     # ─── Data Cleaning ─────────────────────────────────────────
     # Remove missing CustomerID
