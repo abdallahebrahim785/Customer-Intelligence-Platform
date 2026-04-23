@@ -2,7 +2,7 @@
 
 > **AI-Powered Customer Analytics · CLTV Forecasting · Churn Prevention · Smart Segmentation**
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](YOUR_APP_LINK_HERE)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://the-customer-intelligence-platform.streamlit.app/)
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.x-orange.svg)](https://scikit-learn.org/)
 [![XGBoost](https://img.shields.io/badge/XGBoost-Latest-green.svg)](https://xgboost.readthedocs.io/)
@@ -12,7 +12,7 @@
 
 ## 🔗 Live Demo
 
-👉 **[Launch App](YOUR_APP_LINK_HERE)**
+👉 **[Launch App](https://the-customer-intelligence-platform.streamlit.app/)**
 
 ---
 
