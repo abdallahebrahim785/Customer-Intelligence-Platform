@@ -177,13 +177,37 @@ def insight_box(text):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# DATA LOADING
+# DATA LOADING (WITH CALCULATED FEATURES)
 # ═══════════════════════════════════════════════════════════════════════════
 
 @st.cache_data
 def load_transaction_data():
-    df = pd.read_csv('OnlineRetail_Cleaned.csv')
+    """Load raw transaction data and calculate all needed features"""
+    
+    # Load raw data (upload OnlineRetail.csv to GitHub)
+    df = pd.read_csv('OnlineRetail.csv', encoding='latin1')
+    
+    # ─── Data Cleaning ─────────────────────────────────────────
+    # Remove missing CustomerID
+    df = df.dropna(subset=['CustomerID'])
+    
+    # Remove invalid quantities and prices
+    df = df[df['Quantity'] > 0]
+    df = df[df['UnitPrice'] > 0]
+    
+    # Remove duplicates
+    df = df.drop_duplicates()
+    
+    # Convert InvoiceDate to datetime
     df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
+    
+    # ─── Calculate Features (calculated on the fly) ────────────
+    df['TotalPrice'] = df['Quantity'] * df['UnitPrice']
+    df['Year'] = df['InvoiceDate'].dt.year
+    df['Quarter'] = df['InvoiceDate'].dt.quarter
+    df['MonthName'] = df['InvoiceDate'].dt.month_name()
+    df['DayName'] = df['InvoiceDate'].dt.day_name()
+    
     return df
 
 @st.cache_data
