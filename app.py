@@ -9,45 +9,6 @@ import base64
 from datetime import datetime
 warnings.filterwarnings("ignore")
 
-# ─── Get Dataset ────────────────────────────────────────────────────────────
-
-
-import gdown
-import os
-
-@st.cache_data
-def load_transaction_data():
-    """Load cleaned transaction data from Google Drive"""
-    
-    # Google Drive file ID - REPLACE WITH YOUR ACTUAL ID
-    FILE_ID = "https://drive.google.com/file/d/1-E_0ehmwzwrWUk4ZT8RLVfjM_FwHLd10/view?usp=drivesdk"  
-    
-    local_filename = "OnlineRetail_Cleaned.csv"
-    
-    # Download if file doesn't exist locally
-    if not os.path.exists(local_filename):
-        with st.spinner("📥 Downloading dataset (first time only)... This may take a moment ⏳"):
-            # Construct download URL
-            url = f"https://drive.google.com/uc?id={FILE_ID}"
-            
-            try:
-                gdown.download(url, local_filename, quiet=False)
-                st.success("✅ Dataset downloaded successfully!")
-            except Exception as e:
-                st.error(f"❌ Error downloading file: {e}")
-                st.info("Make sure the file is shared with 'Anyone with the link'")
-                return None
-    
-    # Load the data
-    try:
-        df = pd.read_csv(local_filename)
-        df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
-        return df
-    except Exception as e:
-        st.error(f"❌ Error reading CSV: {e}")
-        return None
-
-
 
 # ─── Page config ────────────────────────────────────────────────────────────
 st.set_page_config(
